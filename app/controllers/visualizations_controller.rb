@@ -6,7 +6,7 @@ class VisualizationsController < ApplicationController
   def create
     dataset = Dataset.find(params[:dataset_id])
     visualization = Visualization.build(dataset, params[:chart_task])
-    visualization.fetch!(authorized_account(dataset.schema.database), params[:chart_task][:check_id])
+    visualization.fetch!(authorized_account(dataset), params[:chart_task][:check_id])
     present visualization
   end
 

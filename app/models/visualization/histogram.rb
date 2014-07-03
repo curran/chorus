@@ -1,15 +1,12 @@
 module Visualization
   class Histogram < Base
     attr_accessor :rows, :bins, :category, :filters, :type
-    attr_writer :dataset, :schema
 
-    def initialize(dataset=nil, attributes={})
+    def post_initialize(dataset, attributes)
       @type = attributes[:type]
       @bins = attributes[:bins].to_i
       @category = attributes[:x_axis]
       @filters = attributes[:filters]
-      @dataset = dataset
-      @schema = dataset.try :schema
     end
 
     def build_row_sql
@@ -34,13 +31,13 @@ module Visualization
       query.to_sql
     end
 
-    def fetch!(account, check_id)
-      min_max_result = CancelableQuery.new(@schema.connect_with(account), check_id, current_user).execute(min_max_sql)
+    def complete_fetch(check_id)
+      min_max_result = CancelableQuery.new(@connection, check_id, current_user).execute(min_max_sql)
 
       @min = min_max_result.rows[0][0].to_f
       @max = min_max_result.rows[0][1].to_f
 
-      result = CancelableQuery.new(@schema.connect_with(account), check_id, current_user).execute(row_sql)
+      result = CancelableQuery.new(@connection, check_id, current_user).execute(row_sql)
       row_data = result.rows.map { |row| {:bin => row[0].to_i, :frequency => row[1].to_i} }
 
       @rows = massage(row_data)

@@ -1,17 +1,14 @@
 module Visualization
   class Heatmap < Base
     attr_accessor :x_bins, :y_bins, :x_axis, :y_axis, :rows, :type, :filters
-    attr_writer :dataset, :schema
 
-    def initialize(dataset=nil, attributes={})
+    def post_initialize(dataset, attributes)
       @x_axis = attributes[:x_axis]
       @y_axis = attributes[:y_axis]
       @x_bins = attributes[:x_bins].to_i
       @y_bins = attributes[:y_bins].to_i
       @filters = attributes[:filters]
       @type = attributes[:type]
-      @dataset = dataset
-      @schema = dataset.try :schema
     end
 
     def column_information
@@ -51,8 +48,8 @@ module Visualization
       query
     end
 
-    def fetch_min_max(account, check_id)
-      result = CancelableQuery.new(@schema.connect_with(account), check_id, current_user).execute(min_max_sql).rows[0]
+    def fetch_min_max(connection, check_id)
+      result = CancelableQuery.new(connection, check_id, current_user).execute(min_max_sql).rows[0]
 
       @min_x = result[0].to_f
       @max_x = result[1].to_f
@@ -60,9 +57,9 @@ module Visualization
       @max_y = result[3].to_f
     end
 
-    def fetch!(account, check_id)
-      fetch_min_max(account, check_id)
-      result = CancelableQuery.new(@schema.connect_with(account), check_id, current_user).execute(row_sql)
+    def complete_fetch(check_id)
+      fetch_min_max(@connection, check_id)
+      result = CancelableQuery.new(@connection, check_id, current_user).execute(row_sql)
       row_data = result.rows.map { |row| {:x => row[0].to_i, :y => row[1].to_i, :value => row[2].to_i} }
       @rows = fill_missing(row_data)
     end

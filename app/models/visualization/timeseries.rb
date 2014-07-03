@@ -1,21 +1,18 @@
 module Visualization
   class Timeseries < Base
     attr_accessor :rows, :time, :value, :time_interval, :aggregation, :filters, :type
-    attr_writer :dataset, :schema
 
-    def initialize(dataset=nil, attributes={})
+    def post_initialize(dataset, attributes)
       @type = attributes[:type]
       @time = attributes[:x_axis]
       @value = attributes[:y_axis]
       @time_interval = attributes[:time_interval]
       @aggregation = attributes[:aggregation]
       @filters = attributes[:filters]
-      @dataset = dataset
-      @schema = dataset.try :schema
     end
 
-    def fetch!(account, check_id)
-      result = CancelableQuery.new(@schema.connect_with(account), check_id, current_user).execute(row_sql)
+    def complete_fetch(check_id)
+      result = CancelableQuery.new(@connection, check_id, current_user).execute(row_sql)
 
       raise ApiValidationError.new(:base, :too_many_rows) if result.rows.count > 1000
       @rows = result.rows.map { |row| {:value => row[0].to_f.round(3), :time => row[1]} }

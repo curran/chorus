@@ -15,6 +15,23 @@ module Visualization
   class Base
     include CurrentUser
 
+    attr_writer :dataset, :schema, :connection
+
+    def initialize(dataset=nil, attributes={})
+      @dataset = dataset
+      @schema = dataset.try :schema
+      post_initialize(dataset, attributes)
+    end
+
+    def fetch!(account, check_id)
+      @connection = @dataset.connect_with(account)
+      complete_fetch(check_id)
+    end
+
+    def post_initialize(dataset, attributes); end
+
+    def complete_fetch(check_id); end
+
     def row_sql
       @dataset.query_setup_sql + build_row_sql
     end
