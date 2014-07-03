@@ -239,7 +239,7 @@ chorus.views.DatasetContentDetails = chorus.views.Base.include(
             showEdit: this.dataset.isChorusView() && !workspaceArchived,
             showDerive: this.showDerive(workspaceArchived),
             showPublish: this.showPublish(workspaceArchived),
-            showVisualize: this.dataset.schema() && !this.dataset.isOracle() && !this.dataset.isJdbc()
+            showVisualize: this.dataset.schema()
         };
     },
 

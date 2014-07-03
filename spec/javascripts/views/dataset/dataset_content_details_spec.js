@@ -233,8 +233,8 @@ describe("chorus.views.DatasetContentDetails", function() {
                     this.view.render();
                 });
 
-                it("does not render the 'Visualize' button", function() {
-                    expect(this.view.$("button.visualize")).not.toExist();
+                it("renders the 'Visualize' button", function() {
+                    expect(this.view.$("button.visualize")).toExist();
                 });
 
                 it("does not render the 'Derive' button", function() {
@@ -260,8 +260,8 @@ describe("chorus.views.DatasetContentDetails", function() {
                     this.view.render();
                 });
 
-                it("does not render the 'Visualize' button", function() {
-                    expect(this.view.$("button.visualize")).not.toExist();
+                it("renders the 'Visualize' button", function() {
+                    expect(this.view.$("button.visualize")).toExist();
                 });
 
                 it("does not render the 'Derive' button", function() {
