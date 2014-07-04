@@ -172,6 +172,10 @@ class DataSourceConnection
     DataSourceConnection::Error
   end
 
+  def visualization_sql_generator
+    raise 'visualization not supported'
+  end
+
   private
 
   def db_options

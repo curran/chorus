@@ -98,6 +98,10 @@ class JdbcConnection < DataSourceConnection
     JdbcConnection::DatabaseError
   end
 
+  def visualization_sql_generator
+    Visualization::SqlGenerator::Jdbc.new
+  end
+
   private
 
   JDBC_TYPES = {

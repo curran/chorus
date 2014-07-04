@@ -17,14 +17,7 @@ module Visualization
     private
 
     def build_row_sql
-      query = relation.
-        group(relation[@category]).
-        project(relation[@category].as('bucket'), Arel.sql('count(1)').as('count')).
-        order(Arel.sql('count').desc).
-        take(@bins)
-      query = query.where(Arel.sql(@filters.join(" AND "))) if @filters.present?
-
-      query.to_sql
+      @sql_generator.frequency_row_sql(@dataset, @bins, @category, @filters)
     end
   end
 end

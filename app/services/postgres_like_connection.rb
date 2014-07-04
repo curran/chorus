@@ -108,6 +108,10 @@ class PostgresLikeConnection < DataSourceConnection
     PostgresLikeConnection::DatabaseError
   end
 
+  def visualization_sql_generator
+    Visualization::SqlGenerator::PgLike.new
+  end
+
   private
 
   def quote_identifier(identifier)

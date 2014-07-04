@@ -10,3 +10,17 @@ CREATE VIEW "<%= schema_name %>".NEWVIEW AS SELECT * FROM "<%= schema_name %>".N
 CREATE TABLE "<%= schema_name %>".TWO_COLUMN_TABLE ("id" NUMBER, "column2" NUMBER);
 CREATE TABLE "<%= schema_name %>"."lowercase_table" ("id" NUMBER, "column2" NUMBER, "column3" NUMBER);
 CREATE VIEW "<%= schema_name %>"."lowercase_view" AS SELECT * FROM "<%= schema_name %>"."lowercase_table";
+
+  -- if you change the number of column of this table, please update different_names_table and different_types_table.
+  -- They must have the same number of columns.
+  CREATE TABLE "<%= schema_name %>"."base_table1"
+    (id INTEGER, column1 INTEGER, column2 INTEGER, category VARCHAR(128), time_value TIMESTAMP);
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 0,0,0, 'apple', '2012-03-01 00:00:02' );
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 1,1,1, 'apple', '2012-03-02 00:00:02' );
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 2,0,2, 'orange' , '2012-04-01 00:00:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 3,1,3, 'orange' , '2012-03-05 00:00:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 4,1,4, 'orange' , '2012-03-04 00:02:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 5,0,5, 'papaya' , '2012-05-01 00:02:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 6,1,6, 'papaya' , '2012-04-08 00:10:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 7,1,7, 'papaya' , '2012-05-11 00:10:02');
+  INSERT INTO "<%= schema_name %>"."base_table1" VALUES ( 8,1,8, 'papaya' , '2012-04-09 00:00:02');

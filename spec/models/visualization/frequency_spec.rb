@@ -28,4 +28,12 @@ describe Visualization::Frequency do
 
     it_behaves_like 'a frequency visualization'
   end
+
+  context 'for teradata', :jdbc_integration do
+    let(:data_source_account) { JdbcIntegration.real_account }
+    let(:schema) { JdbcIntegration.real_schema }
+    let(:dataset) { schema.find_or_initialize_dataset(table_name) }
+
+    it_behaves_like 'a frequency visualization'
+  end
 end

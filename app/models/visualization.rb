@@ -1,3 +1,5 @@
+require 'visualization/sql_generator/base'
+
 module Visualization
   UnknownType = Class.new(StandardError)
 
@@ -15,7 +17,7 @@ module Visualization
   class Base
     include CurrentUser
 
-    attr_writer :dataset, :schema, :connection
+    attr_writer :dataset, :schema, :connection, :sql_generator
 
     def initialize(dataset=nil, attributes={})
       @dataset = dataset
@@ -25,6 +27,7 @@ module Visualization
 
     def fetch!(account, check_id)
       @connection = @dataset.connect_with(account)
+      @sql_generator = @connection.visualization_sql_generator
       complete_fetch(check_id)
     end
 
@@ -40,6 +43,7 @@ module Visualization
       @dataset.query_setup_sql + build_min_max_sql
     end
 
+    # remove when all viz use sql generator
     def relation
       @relation ||= Arel::Table.new(@dataset.scoped_name)
     end
