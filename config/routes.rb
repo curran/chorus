@@ -180,6 +180,7 @@ Chorus::Application.routes.draw do
   end
 
   resource :status, :only => [:show], :controller => 'status'
+  resource :dashboards, :only => [:show]
 
   namespace :import_console do
     match '/' => 'imports#index'
