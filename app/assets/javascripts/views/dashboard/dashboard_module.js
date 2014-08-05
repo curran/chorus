@@ -10,6 +10,11 @@ chorus.views.DashboardModule = chorus.views.Base.extend({
 
 });
 
-chorus.views.DashboardModule1 = chorus.views.DashboardModule;
-chorus.views.DashboardModule2 = chorus.views.DashboardModule;
-chorus.views.DashboardModule3 = chorus.views.DashboardModule;
+_.each([
+    "Module1",
+    "Module2",
+    "Module3",
+    "SiteSnapshot"
+], function(moduleName) {
+    chorus.views["Dashboard" + moduleName] = chorus.views.DashboardModule;
+});
