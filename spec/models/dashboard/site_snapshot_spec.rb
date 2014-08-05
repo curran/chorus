@@ -28,6 +28,22 @@ describe Dashboard::SiteSnapshot do
     }
   end
 
+  context 'when more models have been deleted' do
+    it 'has a negative increment' do
+      User.delete_all
+
+      in_the_past do
+        5.times { |i| FactoryGirl.create(:user, :username => "will_delete#{i}") }
+      end
+
+      FactoryGirl.create(:user, :username => 'safe_from_purge')
+
+      User.destroy_all(%("username" LIKE 'will_delete%'))
+
+      result[:users][:increment].should == -4
+    end
+  end
+
   def in_the_past(&block)
     Timecop.freeze 10.days.ago, &block
   end
