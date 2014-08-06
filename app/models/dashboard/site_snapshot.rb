@@ -10,12 +10,12 @@ module Dashboard
     end
 
     def fetch!
-      @result = [Workfile, Workspace, User, Events::Base].inject({}) do |memo, model|
-        memo[model.to_s.underscore.pluralize.to_sym] = {
+      @result = [Workfile, Workspace, User, Events::Base].map do |model|
+        {
+            :model => model.to_s.underscore,
             :total => model.count,
             :increment => changed_count(model)
         }
-        memo
       end
 
       self

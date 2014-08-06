@@ -104,6 +104,14 @@ window.BackboneFixtureDefinitions = {
         model: 'Dataset'
     },
 
+    dashboard: {
+        children: {
+            siteSnapshot: {
+                model: 'DashboardData'
+            }
+        }
+    },
+
     dashboardConfig: {},
 
     databaseColumn: {},

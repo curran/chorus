@@ -34,9 +34,14 @@ describe DashboardsController do
       end
 
       it 'includes stats for Workfiles, Users, Workspaces, and Events' do
-        %w(workfiles users workspaces events/bases).each do |key|
-          decoded_response.should have_key(key)
+        decoded_response.data.length.should == 4
+        %w(workfile user workspace events/base).each do |key|
+          decoded_response.data.detect { |o| o[:model] == key }.should_not be_nil
         end
+      end
+
+      generate_fixture 'dashboard/siteSnapshot.json' do
+        get :show, params
       end
     end
   end
