@@ -5,13 +5,16 @@ chorus.views.DashboardSiteSnapshot = chorus.views.Base.extend({
     setup: function() {
         this.model = new chorus.models.DashboardData({});
         this.requiredResources.add(this.model);
-        this.model.urlParams = {entityType: 'site_snapshot'};
+        this.model.urlParams = { entityType: 'site_snapshot' };
         this.model.fetch();
     },
 
     additionalContext: function () {
         return {
-            dataItems: this.model.get("data")
+            dataItems: _.map(this.model.get("data"), function(item) {
+                item.translation = "dashboard.site_snapshot." + item.model;
+                return item;
+            })
         };
     }
 

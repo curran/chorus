@@ -1,7 +1,11 @@
-<ol>
+<ul>
     {{#each dataItems}}
-        <li class="square">
-            {{model}}: {{total}} => 7.day.change: {{increment}}
+        <li>
+            <div class="square {{model}}">
+                <div class="total">{{total}}</div>
+                <div class="model">{{t translation}}</div>
+                <div class="change">{{increment}}</div>
+            </div>
         </li>
     {{/each}}
-</ol>
+</ul>

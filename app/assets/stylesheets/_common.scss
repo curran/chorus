@@ -388,6 +388,13 @@ $action-bar-secondary-background-color: $light-blue;
     color: $color-text3;
 }
 
+@mixin dashboard-huge {
+    @include debugging-mixin;
+    font-size: 56px;
+    font-weight: $light;
+    color: $color-text2;
+}
+
 @mixin after-clearfix($which: both) {
     &:after {
             content: ".";
