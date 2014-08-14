@@ -1,14 +1,14 @@
 @import "_common";
 @import "compass/css3/border-radius";
 
-div[data-page="Dashboard"] {
-    $workspace-list-width: 350px;
-
+div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
     #guts {
         padding: ($header-height + $subheader-height) 25px 10px 25px;
     }
 
-    #sidebar_wrapper { display: none; }
+    #sidebar_wrapper {
+        display: none;
+    }
 
     #left {
         margin: 0;
@@ -18,63 +18,63 @@ div[data-page="Dashboard"] {
         border: none;
         @include after-clearfix();
     }
+}
 
-    .dashboard_module {
-        $dashboard-module-title-height: 35px;
-        $dashboard-module-padding: 10px;
-        $title-height: $dashboard-module-title-height - $dashboard-module-padding;
+.dashboard_module {
+    $dashboard-module-title-height: 35px;
+    $dashboard-module-padding: 10px;
+    $title-height: $dashboard-module-title-height - $dashboard-module-padding;
 
-        padding: $dashboard-module-padding;
-        margin-top: 20px;
-        border: $border-canon;
-        @include border-radius(3px);
-        border-top-color: $border-color-dark;
+    padding: $dashboard-module-padding;
+    margin-top: 20px;
+    border: $border-canon;
+    @include border-radius(3px);
+    border-top-color: $border-color-dark;
 
-        .title {
-            display: inline-block;
-            @include dashboard-module-title;
-            height: $title-height;
-            line-height: $title-height;
-        }
+    .title {
+        display: inline-block;
+        @include dashboard-module-title;
+        height: $title-height;
+        line-height: $title-height;
+    }
 
-        &.dashboard_site_snapshot {
-            ul {
-                text-align: center;
-                padding-bottom: 10px;
+    &.dashboard_site_snapshot {
+        ul {
+            text-align: center;
+            padding-bottom: 10px;
 
-                li {
-                    display: inline-block;
+            li {
+                display: inline-block;
 
-                    .square {
-                        width: 200px;
+                .square {
+                    width: 200px;
 
-                        .total {
-                            @include dashboard-huge;
-                        }
-
-                        .model {
-                            @include dashboard-module-title;
-                            padding-bottom: 3px;
-                        }
-
-                        .increment {
-                            @include secondary-text-small;
-                        }
-
-                        &.workfile .total { color: rgb(249, 93, 41); }
-                        &.workspace .total { color: rgb(64, 149, 34); }
-                        &.user .total { color: rgb(36, 148, 235); }
-                        &.associated_dataset .total { color: rgb(153, 35, 114); }
+                    .total {
+                        @include dashboard-huge;
                     }
+
+                    .model {
+                        @include dashboard-module-title;
+                        padding-bottom: 3px;
+                    }
+
+                    .increment {
+                        @include secondary-text-small;
+                    }
+
+                    &.workfile .total { color: rgb(249, 93, 41); }
+                    &.workspace .total { color: rgb(64, 149, 34); }
+                    &.user .total { color: rgb(36, 148, 235); }
+                    &.associated_dataset .total { color: rgb(153, 35, 114); }
                 }
             }
         }
+    }
 
-        .module_header {
-            @include toggle-menus;
-            height: $title-height;
-            line-height: $title-height;
-        }
+    .module_header {
+        @include toggle-menus;
+        height: $title-height;
+        line-height: $title-height;
     }
 }
 

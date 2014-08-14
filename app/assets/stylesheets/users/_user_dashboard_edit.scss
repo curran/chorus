@@ -1,0 +1,75 @@
+@import "_common";
+@import "compass/css3/border-radius";
+
+.user_dashboard_edit {
+
+    .description {
+        @include font-normal-alpha;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .sub_title {
+        @include heading-sidebar;
+        padding-bottom: 5px;
+    }
+
+    .sub_description {
+        @include font-secondary-content;
+        padding-bottom: 20px;
+    }
+
+    .header {
+        @include heading-normal;
+        padding: 5px;
+    }
+
+    .sortable {
+        min-height: 300px;
+        padding: 10px;
+
+        li {
+            height: 60px;
+            padding-left: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 1px solid $brand-dark;
+
+            @include border-radius(3px);
+            @include grab_cursor;
+
+            .name {
+                @include font-primary-link;
+                padding: 3px 0;
+            }
+
+            .module_description {}
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .selected_modules {
+        ul {
+            background-color: $accent-shade;
+        }
+        .header {
+            background-color: darken($accent-shade, 20%);
+        }
+    }
+
+    .available_modules {
+        ul {
+            background-color: $light-gray;
+        }
+        .header {
+            background-color: darken($light-gray, 20%);
+        }
+    }
+
+    .left {
+        float: left;
+    }
+}

@@ -1,4 +1,5 @@
 class UserDashboardsController < ApplicationController
+  wrap_parameters :dashboard_config
 
   def show
     authorize! :update, user
@@ -9,7 +10,7 @@ class UserDashboardsController < ApplicationController
   def create
     authorize! :update, user
 
-    modules = params[:modules]
+    modules = params[:dashboard_config][:modules]
     config = DashboardConfig.new(user)
     config.update(modules)
 

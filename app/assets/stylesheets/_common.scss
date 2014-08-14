@@ -488,6 +488,7 @@ $action-bar-secondary-background-color: $light-blue;
     display: inline-block;
     padding: $padding;
     text-align: center;
+
     @include border-radius($height);
     min-width: $min-width;
 }

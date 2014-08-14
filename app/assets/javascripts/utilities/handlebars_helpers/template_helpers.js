@@ -108,6 +108,15 @@ chorus.handlebarsHelpers.template = {
         }
 
         return new Handlebars.SafeString(list);
+    },
+
+    dashboardModuleList: function(modules, className, translationKey) {
+        var ctx = {
+            modules: modules,
+            className: className,
+            translationKey: translationKey
+        };
+        return Handlebars.helpers.renderTemplate("user/dashboard_edit_list", ctx);
     }
 };
 

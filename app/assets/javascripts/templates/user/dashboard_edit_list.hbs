@@ -1,0 +1,13 @@
+<div class="col cols-12">
+    <div class="module_list {{className}}">
+        <div class="header">{{t translationKey}}</div>
+        <ul class="sortable">
+            {{#each modules}}
+                <li id="{{classKey}}" class="{{classKey}}">
+                    <div class="name">{{t nameKey}}</div>
+                    <div class="module_description">{{t descKey}}</div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

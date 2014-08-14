@@ -34,6 +34,7 @@
             ["users", "UserIndex"],
             ["users/:id", "UserShow"],
             ["users/:id/edit", "UserEdit"],
+            ["users/:id/dashboard_edit", "UserDashboardEdit"],
             ["users/new", "UserNew"],
             ["workspaces", "WorkspaceIndex"],
             ["workspaces/:id", "WorkspaceShow"],

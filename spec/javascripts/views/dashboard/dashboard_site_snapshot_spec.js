@@ -15,7 +15,7 @@ describe("chorus.views.DashboardSiteSnapshot", function() {
             });
 
             it("has a title", function() {
-                expect(this.view.$('.title')).toContainTranslation("dashboard.site_snapshot.title");
+                expect(this.view.$('.title')).toContainTranslation("dashboard.site_snapshot.name");
             });
 
             it("displays the snapshot data", function() {

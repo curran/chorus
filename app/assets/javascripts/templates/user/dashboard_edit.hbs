@@ -1,0 +1,21 @@
+<form action="#">
+    <div class="line">
+        <div class="col description">{{t "user.dashboard_edit.description"}}</div>
+    </div>
+    <div class="line">
+        <div class="col sub_title">{{t "user.dashboard_edit.sub_title"}}</div>
+    </div>
+    <div class="line">
+        <div class="col sub_description">{{t "user.dashboard_edit.sub_description"}}</div>
+    </div>
+    <div class="line">
+        {{dashboardModuleList modules "selected_modules" "user.dashboard_edit.displayed"}}
+        {{dashboardModuleList availableModules "available_modules" "user.dashboard_edit.available"}}
+    </div>
+    <div class="form_controls">
+           <span class="left">
+               <button type="submit" class="submit modalish">{{t "users.button.save_changes"}}</button>
+               <button type="button" class="cancel modalish">{{t "actions.cancel"}}</button>
+           </span>
+    </div>
+</form>
